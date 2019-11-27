@@ -1,6 +1,5 @@
 const Discord = require('discord.js');
 const { prefix, discord_token } = require('./config.json');
-const cp = require('child_process');
 const client = new Discord.Client();
 const fs = require('fs-extra');
 client.commands = new Discord.Collection();
@@ -11,6 +10,7 @@ for (const file of commandFiles) {
 }
 
 client.once('ready', () => {
+	client.user.setUsername('SQF');
 	console.log('Ready!');
 });
 
@@ -35,6 +35,10 @@ client.on('message', async message => {
 	case (message.content.startsWith('```sqf')) :
 	{
 		try {
+			const code = message.content.substring(6, message.content.lastIndexOf('`') - 3);
+			const args = code.split(/ +/);
+			client.commands.get('run').execute(message, args);
+			/*
 			const code = message.content.substring(6, message.content.length - 3);
 			const embed = new Discord.MessageEmbed()
 				.setColor('#fcd703')
@@ -119,11 +123,17 @@ client.on('message', async message => {
 					embed_message.edit(embed);
 				}
 				return;
-			});
+			});*/
 		}
 		catch(err) {
-			message.channel.send(`\`\`\`sqf\n${err.message}\`\`\``);
+			// message.channel.send(`\`\`\`sqf\n${err.message}\`\`\``);
 		}
+		break;
+	}
+	case (message.mentions.users.has(client.user.id)) :
+	{
+		// -- Remove Mentions
+		client.commands.get('run').execute(message, message.content.split(/ +/).filter(arg => !Discord.MessageMentions.USERS_PATTERN.test(arg)));
 		break;
 	}
 	case (message.content.startsWith('```cpp')) :
@@ -135,3 +145,4 @@ client.on('message', async message => {
 });
 
 client.login(discord_token);
+

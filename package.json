@@ -12,6 +12,7 @@
     "discord.js": "github:discordjs/discord.js",
     "fs-extra": "^8.1.0",
     "gift": "^0.10.2",
+    "hastebin-gen": "^2.0.5",
     "node-opus": "^0.3.3",
     "nodegit": "^0.26.2",
     "rmdir-recursive": "0.0.1",
