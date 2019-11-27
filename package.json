@@ -19,5 +19,8 @@
     "rmdir-recursive": "0.0.1",
     "simple-git": "^1.126.0",
     "wait-until": "0.0.2"
+  },
+  "devDependencies": {
+    "eslint": "^6.6.0"
   }
 }
