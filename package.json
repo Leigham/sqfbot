@@ -17,7 +17,7 @@
     "node-opus": "^0.3.3",
     "nodegit": "^0.26.2",
     "rmdir-recursive": "0.0.1",
-    "simple-git": "^1.126.0",
+    "simple-git": "^3.15.0",
     "wait-until": "0.0.2"
   },
   "devDependencies": {
